@@ -1,0 +1,76 @@
+# ---------------------------------------------------------------------------
+# Builds the site and publishes it to GitHub Pages on every push to main.
+#
+# ONE-TIME SETUP IN GITHUB (the site will not appear until you do this):
+#   Repo > Settings > Pages > Build and deployment > Source: "GitHub Actions"
+#
+# You do not need a gh-pages branch. Nothing is committed back to the repo.
+# ---------------------------------------------------------------------------
+name: Deploy site
+
+on:
+  push:
+    branches: ["main"]      # CUSTOMISE: change if your default branch is "master"
+  workflow_dispatch:         # lets you trigger a rebuild by hand from the Actions tab
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# If you push twice quickly, let the newer build win rather than queueing both.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      # CUSTOMISE: pin the Hugo version so a future release cannot break your
+      # build without warning. Bump this deliberately when you want to upgrade.
+      HUGO_VERSION: 0.166.0
+    steps:
+      - name: Install Hugo
+        run: |
+          curl -sSL -o hugo.deb \
+            https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb
+          sudo dpkg -i hugo.deb
+
+      - name: Check out the repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive   # needed only if you later add a theme as a submodule
+          fetch-depth: 0          # needed only if you set enableGitInfo = true
+
+      - name: Configure Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
+      - name: Build
+        env:
+          HUGO_ENVIRONMENT: production
+        run: |
+          hugo \
+            --minify \
+            --gc \
+            --baseURL "${{ steps.pages.outputs.base_url }}/"
+        # Note: --baseURL from the Pages action overrides the value in hugo.toml
+        # during CI, so deploys work even if you forget to update the config.
+        # Your local `hugo server` still uses hugo.toml.
+
+      - name: Upload the built site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./public
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publish to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

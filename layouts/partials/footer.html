@@ -1,0 +1,21 @@
+{{/*
+  Site footer. CUSTOMISE: the links come from [[params.social]] in hugo.toml.
+*/}}
+<footer class="site-footer">
+  <div class="wrap site-footer__inner">
+    <p class="copyright">
+      &copy; {{ with .Site.Params.copyrightYear }}{{ . }}{{ else }}{{ now.Year }}{{ end }}
+      {{ .Site.Params.author | default .Site.Title }}.
+      {{/* CUSTOMISE: licence line. Delete if you do not want one. */}}
+      Text licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.
+    </p>
+
+    {{ with .Site.Params.social }}
+      <ul class="nav nav--footer">
+        {{ range . }}
+          <li><a href="{{ .url | relURL }}">{{ .name }}</a></li>
+        {{ end }}
+      </ul>
+    {{ end }}
+  </div>
+</footer>

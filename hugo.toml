@@ -1,0 +1,112 @@
+# ---------------------------------------------------------------------------
+# Hugo configuration
+# Docs: https://gohugo.io/configuration/
+#
+# CUSTOMISE: almost everything you need for a basic site is in this one file.
+# Change a value, save, and `hugo server` reloads the browser instantly.
+# ---------------------------------------------------------------------------
+
+# CUSTOMISE (REQUIRED): this must match where the site is actually served from,
+# or your CSS and links will 404 once deployed.
+#
+#   Project site (repo named anything, e.g. github.com/you/my-site):
+baseURL = "https://open-source-practices.github.io/"   <- trailing slash matters
+#
+#   User/org site (repo MUST be named YOUR-USERNAME.github.io):
+#     baseURL = "https://open-source-practices.github.io/"
+#
+#   Custom domain (also add a static/CNAME file containing the bare domain):
+#     baseURL = "https://example.org/"
+
+
+# CUSTOMISE: shown in the browser tab, the RSS feed and the header wordmark.
+title = "From Code to Contributions - A Research Software Institute Fellowship Project"
+
+locale = "en-GB"                 # CUSTOMISE: "en-US", "fr-FR", etc. Sets date and number formatting.
+defaultContentLanguage = "en"
+
+enableRobotsTXT = true
+enableGitInfo = false           # set true to use git commit dates as page dates
+timeZone = "America/Boston"      # CUSTOMISE: used when rendering dates
+
+# Drop pages dated in the future or marked draft: true out of production builds.
+buildDrafts = false
+buildFuture = false
+
+# CUSTOMISE: how many posts per page before pagination kicks in.
+[pagination]
+  pagerSize = 10
+
+# ---------------------------------------------------------------------------
+# Navigation
+# CUSTOMISE: add, remove or reorder items. `weight` controls left-to-right order.
+# `pageRef` points at a content path; use `url` instead for external links.
+# ---------------------------------------------------------------------------
+
+[[menu.main]]
+  name = "About the Project"
+  pageRef = "/about"
+  weight = 10
+
+[[menu.main]]
+  name = "Blog"
+  pageRef = "/posts"
+  weight = 20
+
+[[menu.main]]
+  name = "From Code to Contributions"
+  pageRef = "/from-code-to-contributions"
+  weight = 30
+
+[[menu.main]]
+  name = "Say hello" 
+  url = "mailto:ariellebennettlovell@gmail.com"
+  weight = 60 
+
+# Example external link. Uncomment and edit.
+# [[menu.main]]
+#   name = "GitHub"
+#   url = "https://github.com/YOUR-USERNAME"
+#   weight = 30
+
+# ---------------------------------------------------------------------------
+# Your own variables. Anything under [params] is available in templates as
+# {{ .Site.Params.something }}. Grep the layouts/ folder for `Params` to see
+# where each of these is used.
+# ---------------------------------------------------------------------------
+[params]
+  # CUSTOMISE: one line under the site name on the homepage, and the meta
+  # description search engines show.
+  description = "A short sentence describing what this site is for."
+
+  author = "Arielle Bennett"        # CUSTOMISE: used in the footer and RSS
+  copyrightYear = "2026"            # CUSTOMISE
+  showReadingTime = false           # set false to hide "N min read" on posts
+
+  # CUSTOMISE: footer links. Add or delete entries freely; the footer loops
+  # over whatever is here.
+  [[params.social]]
+    name = "Email"
+    url = "mailto:ariellebennettlovell@gmail.com"
+  [[params.social]]
+    name = "GitHub"
+    url = "https://github.com/Arielle-Bennett"
+  [[params.social]]
+    name = "Blue Sky"
+    url = "https://bsky.app/profile/arielleb.bsky.social"
+  [[params.social]]
+    name = "RSS"
+    url = "/index.xml"
+
+# ---------------------------------------------------------------------------
+# Markdown rendering. Leave these alone unless you hit a specific need.
+# ---------------------------------------------------------------------------
+[markup]
+  [markup.goldmark.renderer]
+    unsafe = true                   # allows raw HTML inside your Markdown files
+  [markup.highlight]
+    noClasses = false               # syntax highlighting follows the CSS, not a hardcoded theme
+    lineNos = false
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 3

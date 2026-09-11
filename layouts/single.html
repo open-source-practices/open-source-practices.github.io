@@ -1,0 +1,41 @@
+{{/*
+  A SINGLE PAGE OR POST. Used for content/about.md and everything in content/posts/.
+*/}}
+{{ define "main" }}
+
+  <article class="post">
+    <header class="post__header">
+      <h1 class="page-title">{{ .Title }}</h1>
+      {{/* Dates are hidden on standalone pages by setting `showDate: false`
+           in that page's front matter. */}}
+      {{ if ne .Params.showDate false }}{{ partial "post-meta.html" . }}{{ end }}
+    </header>
+
+    {{/* Optional table of contents. CUSTOMISE: add `toc: true` to a post's front
+         matter to switch it on for that post. */}}
+    {{ if and .Params.toc .TableOfContents }}
+      <nav class="toc" aria-label="On this page">
+        <h2 class="toc__title">On this page</h2>
+        {{ .TableOfContents }}
+      </nav>
+    {{ end }}
+
+    <div class="prose">{{ .Content }}</div>
+
+    {{ with .Params.tags }}
+      <ul class="tags">
+        {{ range . }}<li><a href="{{ (urlize (printf "tags/%s" .)) | relURL }}">{{ . }}</a></li>{{ end }}
+      </ul>
+    {{ end }}
+
+    {{/* Previous / next navigation within the same section. Delete if unwanted. */}}
+    <nav class="post-nav" aria-label="More posts">
+      {{ with .PrevInSection }}<a class="post-nav__prev" href="{{ .RelPermalink }}">Previous: {{ .Title }}</a>{{ end }}
+      {{ with .NextInSection }}<a class="post-nav__next" href="{{ .RelPermalink }}">Next: {{ .Title }}</a>{{ end }}
+    </nav>
+
+    {{/* CUSTOMISE: comments. Paste a giscus or utterances script here to get
+         GitHub-issue-backed comments without a server. */}}
+  </article>
+
+{{ end }}

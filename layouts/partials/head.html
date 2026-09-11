@@ -1,0 +1,44 @@
+{{/*
+  Everything inside <head>. CUSTOMISE: analytics snippets, web fonts and
+  favicons go here.
+*/}}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+{{/* Page title: "Post title · Site name" on inner pages, just the site name on the homepage. */}}
+<title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} · {{ .Site.Title }}{{ end }}</title>
+
+<meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Summary }}{{ . | plainify | truncate 160 }}{{ else }}{{ .Site.Params.description }}{{ end }}{{ end }}">
+
+{{/* Social sharing previews. */}}
+<meta property="og:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}">
+<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:site_name" content="{{ .Site.Title }}">
+{{/* CUSTOMISE: drop a 1200x630 image in static/ and uncomment to get link previews.
+<meta property="og:image" content="{{ "og-image.png" | absURL }}">
+<meta name="twitter:card" content="summary_large_image"> */}}
+
+<link rel="canonical" href="{{ .Permalink }}">
+
+{{/* Stylesheet. Hugo fingerprints the file so browsers pick up changes immediately.
+     Edit assets/css/main.css to restyle the site. */}}
+{{ with resources.Get "css/main.css" }}
+  {{ $css := . | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+{{ end }}
+
+{{/* CUSTOMISE: a favicon. Put favicon.svg (or .ico) in static/ and uncomment.
+<link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml"> */}}
+
+{{/* CUSTOMISE: web fonts. Self-hosting in static/fonts/ is faster and avoids
+     third-party requests, but the quickest route is a Google Fonts <link> here.
+     If you add fonts, update the --font-* variables in assets/css/main.css. */}}
+
+{{ with .OutputFormats.Get "rss" }}
+  <link rel="alternate" type="application/rss+xml" href="{{ .Permalink }}" title="{{ $.Site.Title }}">
+{{ end }}
+
+{{/* CUSTOMISE: analytics. Paste a privacy-friendly snippet (Plausible, GoatCounter,
+     Umami) here. Wrap it in `{{ if hugo.IsProduction }}...{{ end }}` so it does not
+     fire while you are working locally. */}}

@@ -1,0 +1,11 @@
+{{/* Date and reading time, reused by the post list and the post page. */}}
+<p class="meta">
+  {{ with .Date }}
+    {{/* CUSTOMISE: date format. "2 Jan 2006" is Go's reference date, not a literal.
+         Try "2006-01-02" or "January 2, 2006". */}}
+    <time datetime="{{ .Format "2006-01-02" }}">{{ .Format "2 Jan 2006" }}</time>
+  {{ end }}
+  {{ if and .Site.Params.showReadingTime .ReadingTime }}
+    <span class="meta__sep">/</span>{{ .ReadingTime }} min read
+  {{ end }}
+</p>

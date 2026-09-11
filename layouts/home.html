@@ -1,0 +1,29 @@
+{{/*
+  HOMEPAGE. Content comes from content/_index.md.
+  CUSTOMISE: this is the page worth spending time on. Rearrange the blocks below,
+  or delete the recent-posts section entirely if you want a single-page site.
+*/}}
+{{ define "main" }}
+
+  <section class="intro">
+    <h1 class="intro__title">{{ .Site.Title }}</h1>
+    {{ with .Site.Params.description }}<p class="intro__tagline">{{ . }}</p>{{ end }}
+
+    {{/* Body text from content/_index.md */}}
+    <div class="prose">{{ .Content }}</div>
+  </section>
+
+  {{/* Recent posts. CUSTOMISE: `first 5` sets how many appear. Change "posts"
+       to another section name if you rename content/posts/. */}}
+  {{ $recent := first 5 (where .Site.RegularPages "Section" "posts") }}
+  {{ with $recent }}
+    <section class="section">
+      <h2 class="section__title">Recent writing</h2>
+      <ul class="post-list">
+        {{ range . }}{{ partial "post-card.html" . }}{{ end }}
+      </ul>
+      <p><a class="more-link" href="{{ "posts" | relURL }}">All posts</a></p>
+    </section>
+  {{ end }}
+
+{{ end }}

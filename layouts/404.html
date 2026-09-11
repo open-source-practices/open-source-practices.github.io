@@ -1,0 +1,7 @@
+{{/* Shown for broken URLs. GitHub Pages serves this automatically. */}}
+{{ define "main" }}
+  <h1 class="page-title">Page not found</h1>
+  <p class="prose">That address does not match anything on this site. Try the
+    <a href="{{ "" | relURL }}">homepage</a> or the
+    <a href="{{ "posts" | relURL }}">list of posts</a>.</p>
+{{ end }}
