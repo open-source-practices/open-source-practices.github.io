@@ -27,7 +27,7 @@ defaultContentLanguage = "en"
 
 enableRobotsTXT = true
 enableGitInfo = false           # set true to use git commit dates as page dates
-timeZone = "America/Boston"      # CUSTOMISE: used when rendering dates
+timeZone = "America/New_York"      # CUSTOMISE: used when rendering dates
 
 # Drop pages dated in the future or marked draft: true out of production builds.
 buildDrafts = false
