@@ -17,7 +17,8 @@ baseURL = "https://open-source-practices.github.io/"
 #
 #   Custom domain (also add a static/CNAME file containing the bare domain):
 #     baseURL = "https://example.org/"
-
+# Add a theme
+theme = "terminal"
 
 # CUSTOMISE: shown in the browser tab, the RSS feed and the header wordmark.
 title = "From Open Code to Open Contributions"
