@@ -20,7 +20,7 @@ baseURL = "https://open-source-practices.github.io/"
 
 
 # CUSTOMISE: shown in the browser tab, the RSS feed and the header wordmark.
-title = "From Code to Contributions - A Research Software Institute Fellowship Project"
+title = "From Open Code to Open Contributions"
 
 locale = "en-GB"                 # CUSTOMISE: "en-US", "fr-FR", etc. Sets date and number formatting.
 defaultContentLanguage = "en"
@@ -44,18 +44,18 @@ buildFuture = false
 # ---------------------------------------------------------------------------
 
 [[menu.main]]
-  name = "About the Project"
+  name = "About"
   pageRef = "/about"
   weight = 10
 
 [[menu.main]]
-  name = "Blog"
+  name = "From Code to Contributions"
   pageRef = "/posts"
   weight = 20
 
 [[menu.main]]
-  name = "From Code to Contributions"
-  pageRef = "/from-code-to-contributions"
+  name = "Materials & Other Downloads"
+  pageRef = "/materials"
   weight = 30
 
 [[menu.main]]
@@ -77,7 +77,7 @@ buildFuture = false
 [params]
   # CUSTOMISE: one line under the site name on the homepage, and the meta
   # description search engines show.
-  description = "A short sentence describing what this site is for."
+  description = "Exploring open source culture in academia, a Research Software Institute Fellowship Project"
 
   author = "Arielle Bennett"        # CUSTOMISE: used in the footer and RSS
   copyrightYear = "2026"            # CUSTOMISE
