@@ -10,8 +10,8 @@
 # or your CSS and links will 404 once deployed.
 #
 #   Project site (repo named anything, e.g. github.com/you/my-site):
-baseURL = "https://open-source-practices.github.io/"   <- trailing slash matters
-#
+baseURL = "https://open-source-practices.github.io/"  
+#  trailing slash matters
 #   User/org site (repo MUST be named YOUR-USERNAME.github.io):
 #     baseURL = "https://open-source-practices.github.io/"
 #
