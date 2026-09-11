@@ -1,0 +1,6 @@
+{{/* One entry in a list of posts. CUSTOMISE: change what each list item shows. */}}
+<li class="post-card">
+  <h3 class="post-card__title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+  {{ partial "post-meta.html" . }}
+  <p class="post-card__summary">{{ .Summary | plainify | truncate 180 }}</p>
+</li>

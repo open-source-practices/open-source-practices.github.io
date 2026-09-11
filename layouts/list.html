@@ -1,0 +1,20 @@
+{{/*
+  SECTION LISTING, e.g. /posts/. Intro text comes from content/posts/_index.md.
+  CUSTOMISE: this template is used by every section, so if you add
+  content/notes/ it gets the same treatment automatically. To give one section
+  its own look, create layouts/notes/list.html.
+*/}}
+{{ define "main" }}
+
+  <h1 class="page-title">{{ .Title }}</h1>
+  {{ with .Content }}<div class="prose prose--intro">{{ . }}</div>{{ end }}
+
+  {{ $pages := .Paginate .RegularPages }}
+  <ul class="post-list">
+    {{ range $pages.Pages }}{{ partial "post-card.html" . }}{{ end }}
+  </ul>
+
+  {{/* Pager appears only when there are more posts than [pagination].pagerSize */}}
+  {{ partial "pagination.html" . }}
+
+{{ end }}

@@ -1,0 +1,21 @@
+{{/*
+  Site header: wordmark plus navigation.
+  CUSTOMISE: menu items are defined under [[menu.main]] in hugo.toml, not here.
+  Edit this file only to change the header's structure.
+*/}}
+<header class="site-header">
+  <div class="wrap site-header__inner">
+    <a class="wordmark" href="{{ "" | relURL }}">{{ .Site.Title }}</a>
+
+    <nav aria-label="Main">
+      <ul class="nav">
+        {{ range .Site.Menus.main }}
+          {{ $active := or ($.IsMenuCurrent "main" .) ($.HasMenuCurrent "main" .) }}
+          <li>
+            <a href="{{ .URL }}"{{ if $active }} aria-current="page"{{ end }}>{{ .Name }}</a>
+          </li>
+        {{ end }}
+      </ul>
+    </nav>
+  </div>
+</header>

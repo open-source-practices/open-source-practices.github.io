@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{{/*
+  baseof.html is the skeleton every page is poured into. The "main" block near
+  the bottom is filled in by home.html, list.html, single.html or 404.html,
+  depending on what kind of page is being rendered.
+
+  CUSTOMISE: to change something that appears on EVERY page, edit this file or
+  the partials it pulls in (layouts/partials/).
+
+  Note: comments written like this one are stripped before the page is built.
+  Do not use plain HTML comments around template code, because the template
+  engine still reads what is inside them.
+*/}}
+<html lang="{{ .Site.Language.Lang | default "en" }}">
+<head>
+  {{ partial "head.html" . }}
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  {{ partial "header.html" . }}
+
+  <main id="main" class="wrap">
+    {{ block "main" . }}{{ end }}
+  </main>
+
+  {{ partial "footer.html" . }}
+</body>
+</html>
