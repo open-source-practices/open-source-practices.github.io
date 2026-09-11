@@ -10,17 +10,17 @@
 # or your CSS and links will 404 once deployed.
 #
 #   Project site (repo named anything, e.g. github.com/you/my-site):
-#     baseURL = "https://YOUR-USERNAME.github.io/my-site/"   <- trailing slash matters
+baseURL = "https://open-source-practices.github.io/"   <- trailing slash matters
 #
 #   User/org site (repo MUST be named YOUR-USERNAME.github.io):
-#     baseURL = "https://YOUR-USERNAME.github.io/"
+#     baseURL = "https://open-source-practices.github.io/"
 #
 #   Custom domain (also add a static/CNAME file containing the bare domain):
 #     baseURL = "https://example.org/"
-baseURL = "https://YOUR-USERNAME.github.io/YOUR-REPO/"
+
 
 # CUSTOMISE: shown in the browser tab, the RSS feed and the header wordmark.
-title = "Arielle Bennett - Open Source, AI Adoption, & Innovation"
+title = "From Code to Contributions - A Research Software Institute Fellowship Project"
 
 locale = "en-GB"                 # CUSTOMISE: "en-US", "fr-FR", etc. Sets date and number formatting.
 defaultContentLanguage = "en"
@@ -44,7 +44,7 @@ buildFuture = false
 # ---------------------------------------------------------------------------
 
 [[menu.main]]
-  name = "About"
+  name = "About the Project"
   pageRef = "/about"
   weight = 10
 
@@ -57,11 +57,6 @@ buildFuture = false
   name = "From Code to Contributions"
   pageRef = "/from-code-to-contributions"
   weight = 30
-
-[[menu.main]]
-  name = "Consultancy" 
-  pageRef = "/consultancy" 
-  weight = 40 
 
 [[menu.main]]
   name = "Say hello" 
@@ -95,7 +90,7 @@ buildFuture = false
     url = "mailto:ariellebennettlovell@gmail.com"
   [[params.social]]
     name = "GitHub"
-    url = "https://github.com/YOUR-USERNAME"
+    url = "https://github.com/Arielle-Bennett"
   [[params.social]]
     name = "Blue Sky"
     url = "https://bsky.app/profile/arielleb.bsky.social"
