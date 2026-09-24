@@ -12,16 +12,11 @@
 #   Project site (repo named anything, e.g. github.com/you/my-site):
 baseURL = "https://open-source-practices.github.io/"  
 #  trailing slash matters
-#   User/org site (repo MUST be named YOUR-USERNAME.github.io):
-#     baseURL = "https://open-source-practices.github.io/"
-#
 #   Custom domain (also add a static/CNAME file containing the bare domain):
 #     baseURL = "https://example.org/"
 # Add a theme
+# Tells Hugo to use the theme in themes/terminal.
 theme = "terminal"
-
-# CUSTOMISE: shown in the browser tab, the RSS feed and the header wordmark.
-title = "From Open Code to Open Contributions"
 
 locale = "en-GB"                 # CUSTOMISE: "en-US", "fr-FR", etc. Sets date and number formatting.
 defaultContentLanguage = "en"
@@ -36,39 +31,40 @@ buildFuture = false
 
 # CUSTOMISE: how many posts per page before pagination kicks in.
 [pagination]
-  pagerSize = 10
+  pagerSize = 5
 
 # ---------------------------------------------------------------------------
-# Navigation
-# CUSTOMISE: add, remove or reorder items. `weight` controls left-to-right order.
-# `pageRef` points at a content path; use `url` instead for external links.
+# Theme behaviour
 # ---------------------------------------------------------------------------
+[params]
+  # Folder under content/ holding your posts. The homepage lists whatever is
+  # in here. CUSTOMISE: change to "notes", "writing" etc., and rename the
+  # content/posts/ folder to match.
+  contentTypeName = "posts"
 
-[[menu.main]]
-  name = "About"
-  pageRef = "/about"
-  weight = 10
+  # How many menu items show before the rest collapse behind "Show more".
+  # Set to 0 to hide all items behind the toggle.
+  showMenuItems = 3
 
-[[menu.main]]
-  name = "From Code to Contributions"
-  pageRef = "/posts"
-  weight = 20
+  showLanguageSelector = false   # only useful if you add a second language
 
-[[menu.main]]
-  name = "Materials & Other Downloads"
-  pageRef = "/materials"
-  weight = 30
+  fullWidthTheme = false         # true = content spans the full window width
+  centerTheme = true             # true = content column centred rather than left
 
-[[menu.main]]
-  name = "Say hello" 
-  url = "mailto:ariellebennettlovell@gmail.com"
-  weight = 60 
+  # If a post is a folder (content/posts/my-post/index.md) containing
+  # cover.jpg|png|webp, that image is used as the post cover automatically.
+  autoCover = true
 
-# Example external link. Uncomment and edit.
-# [[menu.main]]
-#   name = "GitHub"
-#   url = "https://github.com/YOUR-USERNAME"
-#   weight = 30
+  showLastUpdated = false        # requires enableGitInfo = true above
+  # updatedDatePrefix = "Updated"
+
+  readingTime = false             # show "N min read" on posts
+  Toc = false                    # table of contents; override per post in front matter
+  TocTitle = "Contents"
+
+  # CUSTOMISE: date format. "2006-01-02" is Go's reference date, not a literal
+  # year.
+  dateFormat = "2006-01-02"
 
 # ---------------------------------------------------------------------------
 # Your own variables. Anything under [params] is available in templates as
@@ -76,14 +72,6 @@ buildFuture = false
 # where each of these is used.
 # ---------------------------------------------------------------------------
 [params]
-  # CUSTOMISE: one line under the site name on the homepage, and the meta
-  # description search engines show.
-  description = "Exploring open source culture in academia, a Research Software Institute Fellowship Project"
-
-  author = "Arielle Bennett"        # CUSTOMISE: used in the footer and RSS
-  copyrightYear = "2026"            # CUSTOMISE
-  showReadingTime = false           # set false to hide "N min read" on posts
-
   # CUSTOMISE: footer links. Add or delete entries freely; the footer loops
   # over whatever is here.
   [[params.social]]
@@ -98,6 +86,72 @@ buildFuture = false
   [[params.social]]
     name = "RSS"
     url = "/index.xml"
+# ---------------------------------------------------------------------------
+# Language block: site title, all interface wording, logo and menu.
+# This is where most of your customising happens.
+# ---------------------------------------------------------------------------
+[languages]
+  [languages.en]
+    # CUSTOMISE: shown in the browser tab, the RSS feed and the header wordmark.
+    title = "From Open Code to Open Contributions"
+    # CUSTOMISE: one line under the site name on the homepage, and the meta description search engines show.
+    subtitle = "Exploring open source culture in academia, a Research Software Institute Fellowship Project"
+
+    author = "Arielle Bennett"        # CUSTOMISE: used in the footer and RSS
+    copyright - ""
+    copyrightYear = "2026"            # CUSTOMISE
+    showReadingTime = false           # set false to hide "N min read" on posts
+    # CUSTOMISE: interface wording. Change any of these to reword the site.
+    menuMore = "Show more"
+    readMore = "Read more"
+    readOtherPosts = "Read other posts"
+    newerPosts = "Newer posts"
+    olderPosts = "Older posts"
+    missingContentMessage = "Page not found..."
+    missingBackButtonLabel = "Back to home page"
+    minuteReadingTime = "min read"
+    words = "words"
+    
+    # CUSTOMISE: the wordmark in the top left. Plain text, styled by the
+    # theme to look like a terminal prompt.
+    [languages.en.params.logo]
+    logoText = "From Code to Contributions"
+        # logoHomeLink is deliberately left out. The theme uses this value
+        # verbatim as the wordmark's link, so setting it to "/" sends visitors
+        # to the domain root, which is a 404 on a project site served at
+        # username.github.io/your-repo/. Left unset, the theme falls back to
+        # your baseURL, which is correct for every kind of Pages site.
+        # Only set it if you want the wordmark to point somewhere unusual.
+        # logoHomeLink = "https://example.org/"
+
+# ---------------------------------------------------------------------------
+# Navigation
+# CUSTOMISE: add, remove or reorder items. `weight` controls left-to-right order.
+# `pageRef` points at a content path; use `url` instead for external links.
+# ---------------------------------------------------------------------------
+      [languages.en.menu]
+        [[languages.en.menu.main]]
+          identifier = "about"
+          name = "About"
+          url = "/about"
+       [[languages.en.menu.main]]
+          identifier = "from-code-to-contributions"
+          name = "From Code to Contributions"
+          url = "/posts" 
+      [[languages.en.menu.main]]
+          identifier = "materials"
+          name = "Materials & Other Downloads"
+          url = "/materials" 
+       [[languages.en.menu.main]]
+          identifier = "contact"
+          name = "Say Hello"
+          url = "mailto:ariellebennettlovell@gmail.com" 
+
+        # Example external link. Uncomment and edit.
+        # [[languages.en.menu.main]]
+        #   identifier = "github"
+        #   name = "GitHub"
+        #   url = "https://github.com/YOUR-USERNAME"
 
 # ---------------------------------------------------------------------------
 # Markdown rendering. Leave these alone unless you hit a specific need.
