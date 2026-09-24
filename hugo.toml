@@ -97,7 +97,7 @@ buildFuture = false
     subtitle = "Exploring open source culture in academia, a Research Software Institute Fellowship Project"
 
     author = "Arielle Bennett"        # CUSTOMISE: used in the footer and RSS
-    copyright - ""
+    copyright = ""
     copyrightYear = "2026"            # CUSTOMISE
     showReadingTime = false           # set false to hide "N min read" on posts
     # CUSTOMISE: interface wording. Change any of these to reword the site.
