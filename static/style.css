@@ -1,0 +1,53 @@
+/* ===========================================================================
+   style.css — YOUR OVERRIDES
+
+   The Terminal theme picks this file up automatically (see
+   themes/terminal/layouts/partials/head.html). It loads AFTER the theme's own
+   CSS, so anything you put here wins.
+
+   Use this file rather than editing themes/terminal/assets/css/*.css: it keeps
+   your changes separate from the theme, so you can update or replace the theme
+   without losing them.
+
+   Everything below is commented out. Uncomment what you want to change.
+   =========================================================================== */
+
+/* --- Colours -------------------------------------------------------------
+   Terminal's palette is driven by these variables. Generate a full scheme
+   visually at https://panr.github.io/terminal-css/ and paste the result into
+   static/terminal.css instead (the theme loads that file too, before this one).
+
+:root {
+  --background: #1a1a1d;
+  --color: #ddd;
+  --accent: #f8f8f8;
+  --border-color: rgba(255, 255, 255, 0.1);
+}
+*/
+
+/* --- Width ---------------------------------------------------------------
+   Prefer the fullWidthTheme / centerTheme switches in hugo.toml first. Use
+   this only if you want a specific measurement.
+
+.container {
+  max-width: 900px;
+}
+*/
+
+/* --- Type ----------------------------------------------------------------
+   Terminal uses Fira Code throughout. Monospaced body text is the whole point
+   of the theme, but long posts are easier to read in a proportional face.
+   If you add a web font, load it in layouts/partials/extended_head.html.
+
+.post-content {
+  font-family: Georgia, serif;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+*/
+
+/* --- Logo ----------------------------------------------------------------
+
+.logo__mark { color: #6fc7b2; }
+.logo__text { color: #f8f8f8; }
+*/
