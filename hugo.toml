@@ -71,7 +71,6 @@ buildFuture = false
 # {{ .Site.Params.something }}. Grep the layouts/ folder for `Params` to see
 # where each of these is used.
 # ---------------------------------------------------------------------------
-[params]
   # CUSTOMISE: footer links. Add or delete entries freely; the footer loops
   # over whatever is here.
   [[params.social]]
