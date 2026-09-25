@@ -16,7 +16,7 @@ baseURL = "https://open-source-practices.github.io/"
 #     baseURL = "https://example.org/"
 # Add a theme
 # Tells Hugo to use the theme in themes/terminal.
-theme = "terminal"
+theme = "themes/terminal"
 
 locale = "en-GB"                 # CUSTOMISE: "en-US", "fr-FR", etc. Sets date and number formatting.
 defaultContentLanguage = "en"
